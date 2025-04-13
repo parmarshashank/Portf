@@ -1,15 +1,10 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -25,10 +20,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @layer base {
   :root {
     /* Solo Leveling inspired colors */
@@ -40,6 +31,16 @@ body {
     --sl-text-secondary: #94a3b8;
     --sl-border: rgba(0, 168, 255, 0.2);
     --sl-card-bg: rgba(10, 14, 23, 0.8);
+
+    /* Override theme vars */
+    --background: var(--sl-background);
+    --foreground: var(--sl-text-primary);
+  }
+
+  body {
+    background: var(--sl-background);
+    color: var(--sl-text-primary);
+    font-family: var(--font-inter);
   }
 }
 
@@ -47,9 +48,9 @@ body {
   .stat-text {
     @apply bg-gradient-to-r from-[var(--sl-blue-glow)] to-[var(--sl-blue-light)] bg-clip-text text-transparent;
   }
-  
+
   .card {
-    @apply bg-[var(--sl-card-bg)] backdrop-blur-sm border border-[var(--sl-border)] rounded-lg p-6 transition-all duration-300;
+    @apply bg-[var(--sl-card-bg)] bg-opacity-80 blur-sm border border-[var(--sl-border)] rounded-lg p-6 transition-all duration-300;
   }
 
   .nav-link {
@@ -57,37 +58,118 @@ body {
   }
 
   .blue-glow {
-    text-shadow: 0 0 10px var(--sl-blue-glow);
+    text-shadow: 0 0 10px var(--sl-blue-glow),
+                 0 0 20px var(--sl-blue-glow),
+                 0 0 30px var(--sl-blue-glow);
   }
 
   .status-window {
-    @apply relative border border-[var(--sl-border)] bg-[var(--sl-card-bg)] backdrop-blur-md;
-    box-shadow: 0 0 20px rgba(0, 168, 255, 0.1);
+    @apply relative border border-[var(--sl-border)] bg-[var(--sl-card-bg)] bg-opacity-80 blur-md;
+    box-shadow: 0 0 20px rgba(0, 168, 255, 0.2),
+                0 0 40px rgba(0, 168, 255, 0.1);
   }
 
   .status-window::before {
     content: '';
     @apply absolute inset-0 bg-gradient-to-r from-[var(--sl-blue-glow)]/5 to-transparent opacity-50;
   }
+
+  .status-window::after {
+    content: '';
+    @apply absolute inset-0;
+    background: linear-gradient(
+      45deg,
+      transparent 0%,
+      rgba(0, 168, 255, 0.1) 50%,
+      transparent 100%
+    );
+    animation: shimmer 3s infinite;
+  }
+
+  .stat-bar {
+    @apply h-2 bg-slate-700/50 rounded-full overflow-hidden relative;
+  }
+
+  .stat-bar::before {
+    content: '';
+    @apply absolute inset-0 bg-[var(--sl-blue-glow)];
+    animation: pulse 2s infinite;
+  }
+
+  .notification-box {
+    @apply relative border border-[var(--sl-border)] bg-[var(--sl-card-bg)] bg-opacity-80 blur-md p-6;
+    box-shadow: 0 0 20px rgba(0, 168, 255, 0.2),
+                0 0 40px rgba(0, 168, 255, 0.1);
+  }
+
+  .notification-box::before {
+    content: '';
+    @apply absolute inset-0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(0, 168, 255, 0.1),
+      transparent
+    );
+    animation: scan 2s linear infinite;
+  }
 }
 
-/* Particle Animation */
-.particles {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  overflow: hidden;
-  top: 0;
-  left: 0;
+@layer utilities {
+  .fog {
+    @apply fixed inset-0 pointer-events-none;
+    background:
+      radial-gradient(
+        circle at 50% 50%,
+        rgba(0, 168, 255, 0.05) 0%,
+        transparent 50%
+      );
+    filter: blur(60px);
+    animation: fogMove 8s infinite alternate;
+    mix-blend-mode: screen;
+  }
+
+  .fog-2 {
+    @apply fixed inset-0 pointer-events-none;
+    background:
+      radial-gradient(
+        circle at 30% 70%,
+        rgba(0, 168, 255, 0.03) 0%,
+        transparent 60%
+      );
+    filter: blur(40px);
+    animation: fogMove 12s infinite alternate-reverse;
+    mix-blend-mode: screen;
+  }
+
+  .particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+  }
+
+  .particle {
+    position: absolute;
+    background: var(--sl-blue-glow);
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    box-shadow: 0 0 10px var(--sl-blue-glow),
+                0 0 20px var(--sl-blue-glow);
+  }
 }
 
-.particle {
-  position: absolute;
-  background: var(--sl-blue-glow);
-  border-radius: 50%;
-  pointer-events: none;
-  opacity: 0;
+@keyframes fogMove {
+  0% {
+    transform: translateX(-5%) translateY(-5%) scale(1.1);
+  }
+  100% {
+    transform: translateX(5%) translateY(5%) scale(0.9);
+  }
 }
 
 @keyframes float-up {
@@ -101,6 +183,33 @@ body {
   100% {
     transform: translateY(-100vh);
     opacity: 0;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(45deg);
+  }
+}
+
+@keyframes scan {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
   }
 }
 
@@ -122,27 +231,4 @@ body {
   50% {
     box-shadow: 0 0 30px rgba(0, 168, 255, 0.4);
   }
-}
-
-@keyframes slideIn {
-  from {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-.animate-level-up {
-  animation: levelUp 0.5s ease-out forwards;
-}
-
-.animate-glow {
-  animation: glowPulse 3s infinite;
-}
-
-.animate-slide-in {
-  animation: slideIn 0.5s ease-out forwards;
 }
