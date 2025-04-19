@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Rajdhani } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react"
 import "./globals.css";
 
 const inter = Inter({
@@ -14,8 +15,8 @@ const rajdhani = Rajdhani({
 });
 
 export const metadata: Metadata = {
-  title: "Shashank | Developer",
-  description: "Full-Stack Developer | Solo Leveling Inspired Portfolio",
+  title: "parmarshashank",
+  description: "Hehe",
 };
 
 export default function RootLayout({
@@ -37,6 +38,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         {children}
+        <Analytics/>
       </body>
     </html>
   );
