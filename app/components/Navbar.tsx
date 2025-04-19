@@ -2,27 +2,39 @@ import Link from 'next/link';
 import { Menu } from 'lucide-react';
 
 const Navbar = () => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const element = document.querySelector(href);
+    element?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar__container">
-        <Link href="#home" className="navbar__logo">
+        <a 
+          href="#hero" 
+          className="navbar__logo"
+          onClick={(e) => handleClick(e, '#hero')}
+        >
           SHASHANK
-        </Link>
+        </a>
         
         <div className="navbar__content">
           <ul className="navbar__menu">
             {[
-              ['HOME', '#home'],
+              ['HOME', '#hero'],
               ['PROFILE', '#profile'],
-              ['QUESTS', '#quests'],
-              ['STATS', '#stats'],
-              ['EVOLUTION', '#evolution'],
-              ['GATE', '#contact'],
+              ['PROJECTS', '#projects'],
+              ['CONTACT', '#contact'],
             ].map(([name, href]) => (
               <li key={name}>
-                <Link href={href} className="navbar__link">
+                <a 
+                  href={href} 
+                  className="navbar__link"
+                  onClick={(e) => handleClick(e, href)}
+                >
                   {name}
-                </Link>
+                </a>
               </li>
             ))}
           </ul>
