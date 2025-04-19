@@ -512,6 +512,7 @@ h1, h2, h3, h4, h5, h6 {
     inset 0 0 20px rgba(0, 168, 255, 0.1);
   margin-bottom: 2rem;
   transition: all 0.3s ease;
+  overflow: hidden;
 }
 
 .stat-group:hover {
@@ -519,6 +520,24 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 
     0 0 30px rgba(0, 168, 255, 0.2),
     inset 0 0 30px rgba(0, 168, 255, 0.1);
+}
+
+.stat-group::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--sl-blue-glow),
+    transparent
+  );
+  animation: scanline 3s linear infinite;
+  transform-origin: 0 0;
+  pointer-events: none;
 }
 
 .stat-group__header {
@@ -614,18 +633,13 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Update scanline animation to prevent overflow */
+/* Update scanline animation */
 @keyframes scanline {
   0% {
     transform: translateX(0%);
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
   }
   100% {
-    transform: translateX(100%);
-    opacity: 0;
+    transform: translateX(50%);
   }
 }
 
@@ -667,5 +681,75 @@ h1, h2, h3, h4, h5, h6 {
   
   .skill-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Title Cards */
+.titles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.title-card {
+  background: rgba(2, 11, 22, 0.95);
+  border: 1px solid rgba(0, 168, 255, 0.2);
+  border-radius: 0.375rem;
+  padding: 1.25rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.title-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--sl-blue-glow),
+    transparent
+  );
+  animation: scanline 3s linear infinite;
+  transform-origin: 0 0;
+  pointer-events: none;
+}
+
+.title-card:hover {
+  border-color: var(--sl-blue-glow);
+  box-shadow: 0 0 20px rgba(0, 168, 255, 0.2);
+}
+
+.title-card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.title-card__icon {
+  color: var(--sl-blue-glow);
+  font-size: 1.25rem;
+}
+
+.title-card__title {
+  color: var(--sl-blue-light);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.title-card__description {
+  color: var(--sl-text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .titles-grid {
+    grid-template-columns: 1fr;
   }
 }

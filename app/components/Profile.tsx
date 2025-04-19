@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { FiAward, FiCode } from 'react-icons/fi';
 
 interface StatBarProps {
   label: string;
@@ -39,44 +40,29 @@ const Profile = () => {
           <div className="profile__bio">
             A passionate Full-Stack Developer with a quest to create exceptional digital experiences. 
             Specializing in modern web technologies and creative problem-solving, I transform complex 
-            challenges into elegant solutions. My journey in the realm of code has equipped me with 
-            the skills to craft robust applications and intuitive user interfaces.
+            challenges into elegant solutions.
           </div>
 
           <div className="stat-group">
             <div className="stat-group__header">
-              <h3 className="stat-group__title">STATS</h3>
+              <h3 className="stat-group__title">TITLES</h3>
               <span className="stat-group__value">LV.18</span>
             </div>
-
-            <div className="stat-bar-container">
-              <div className="stat-bar-label">
-                <span>Frontend Development</span>
-                <span>85/100</span>
-              </div>
-              <div className="stat-bar">
-                <div className="stat-bar__fill" style={{ width: '85%' }} />
-              </div>
-            </div>
-
-            <div className="stat-bar-container">
-              <div className="stat-bar-label">
-                <span>Backend Development</span>
-                <span>80/100</span>
-              </div>
-              <div className="stat-bar">
-                <div className="stat-bar__fill" style={{ width: '80%' }} />
-              </div>
-            </div>
-
-            <div className="stat-bar-container">
-              <div className="stat-bar-label">
-                <span>Problem Solving</span>
-                <span>90/100</span>
-              </div>
-              <div className="stat-bar">
-                <div className="stat-bar__fill" style={{ width: '90%' }} />
-              </div>
+            <div className="titles-grid">
+              {[
+                { title: 'Full-Stack Developer', description: 'Master of both frontend and backend realms' },
+                { title: 'Problem Solver', description: 'Tactical approach to complex challenges' },
+                { title: 'Code Architect', description: 'Designer of scalable solutions' },
+                { title: 'UI Specialist', description: 'Creator of engaging interfaces' },
+              ].map((item) => (
+                <div key={item.title} className="title-card">
+                  <div className="title-card__header">
+                    <FiAward className="title-card__icon" />
+                    <h4 className="title-card__title">{item.title}</h4>
+                  </div>
+                  <p className="title-card__description">{item.description}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -100,24 +86,6 @@ const Profile = () => {
                 <div key={skill.name} className="skill-item">
                   <div className="skill-item__name">{skill.name}</div>
                   <div className="skill-item__level">{skill.level}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="stat-group">
-            <div className="stat-group__header">
-              <h3 className="stat-group__title">TITLES</h3>
-            </div>
-            <div className="skill-grid">
-              {[
-                'Full-Stack Developer',
-                'Problem Solver',
-                'Code Architect',
-                'UI Specialist',
-              ].map((title) => (
-                <div key={title} className="skill-item">
-                  <div className="skill-item__name">{title}</div>
                 </div>
               ))}
             </div>
