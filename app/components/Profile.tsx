@@ -25,114 +25,103 @@ const StatBar = ({ label, value, maxValue }: StatBarProps) => (
 
 const Profile = () => {
   return (
-    <section id="profile" className="relative py-20 overflow-hidden">
+    <section className="profile" id="profile">
       <div className="fog" />
       <div className="fog-2" />
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="notification-box rounded-lg mb-12"
-        >
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-8 h-8 rounded border border-[var(--sl-border)] flex items-center justify-center">
-              <span className="text-[var(--sl-blue-glow)]">!</span>
-            </div>
-            <h2 className="text-2xl font-bold text-[var(--sl-blue-glow)]">NOTIFICATION</h2>
+      <div className="profile__content">
+        <div>
+          <div className="profile__header">
+            <h2 className="profile__title">CHARACTER PROFILE</h2>
+            <p className="profile__subtitle">Status Window</p>
           </div>
-          <p className="text-[var(--sl-text-primary)] text-lg">
-            Character Status Window
-          </p>
-        </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="status-window rounded-lg p-8"
-          >
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <h3 className="text-xl font-bold text-[var(--sl-blue-light)]">LEVEL</h3>
-                  <span className="text-2xl font-bold text-[var(--sl-text-primary)]">18</span>
-                </div>
-                <div className="h-px bg-[var(--sl-border)]" />
+          <div className="profile__bio">
+            A passionate Full-Stack Developer with a quest to create exceptional digital experiences. 
+            Specializing in modern web technologies and creative problem-solving, I transform complex 
+            challenges into elegant solutions. My journey in the realm of code has equipped me with 
+            the skills to craft robust applications and intuitive user interfaces.
+          </div>
+
+          <div className="stat-group">
+            <div className="stat-group__header">
+              <h3 className="stat-group__title">STATS</h3>
+              <span className="stat-group__value">LV.18</span>
+            </div>
+
+            <div className="stat-bar-container">
+              <div className="stat-bar-label">
+                <span>Frontend Development</span>
+                <span>85/100</span>
               </div>
-
-              <div className="space-y-4">
-                <h3 className="text-xl font-bold text-[var(--sl-blue-light)]">CLASS</h3>
-                <p className="text-[var(--sl-text-primary)] text-lg">Full-Stack Developer</p>
-                <div className="h-px bg-[var(--sl-border)]" />
-              </div>
-
-              <div className="space-y-6">
-                <h3 className="text-xl font-bold text-[var(--sl-blue-light)]">STATS</h3>
-                <StatBar label="Frontend" value={85} maxValue={100} />
-                <StatBar label="Backend" value={80} maxValue={100} />
-                <StatBar label="DevOps" value={70} maxValue={100} />
-                <StatBar label="Problem Solving" value={90} maxValue={100} />
+              <div className="stat-bar">
+                <div className="stat-bar__fill" style={{ width: '85%' }} />
               </div>
             </div>
-          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="prose prose-invert max-w-none"
-          >
-            <div className="space-y-6">
-              <div className="status-window rounded-lg p-8">
-                <h3 className="text-xl font-bold text-[var(--sl-blue-light)] mb-4">SKILLS</h3>
-                <div className="flex flex-wrap gap-3">
-                  {[
-                    { name: 'React', level: 'S' },
-                    { name: 'TypeScript', level: 'S' },
-                    { name: 'Node.js', level: 'A' },
-                    { name: 'Next.js', level: 'S' },
-                    { name: 'Python', level: 'A' },
-                    { name: 'AWS', level: 'B' },
-                  ].map((skill) => (
-                    <motion.div
-                      key={skill.name}
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ duration: 0.3 }}
-                      className="px-4 py-2 rounded-lg bg-[var(--sl-card-bg)] border border-[var(--sl-border)] flex items-center gap-2"
-                    >
-                      <span className="text-[var(--sl-text-primary)]">{skill.name}</span>
-                      <span className="text-[var(--sl-blue-light)] font-bold">{skill.level}</span>
-                    </motion.div>
-                  ))}
-                </div>
+            <div className="stat-bar-container">
+              <div className="stat-bar-label">
+                <span>Backend Development</span>
+                <span>80/100</span>
               </div>
-
-              <div className="status-window rounded-lg p-8">
-                <h3 className="text-xl font-bold text-[var(--sl-blue-light)] mb-4">TITLES</h3>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[var(--sl-blue-glow)]" />
-                    <span className="text-[var(--sl-text-primary)]">Full-Stack Developer</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[var(--sl-blue-glow)]" />
-                    <span className="text-[var(--sl-text-primary)]">Problem Solver</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[var(--sl-blue-glow)]" />
-                    <span className="text-[var(--sl-text-primary)]">Code Architect</span>
-                  </div>
-                </div>
+              <div className="stat-bar">
+                <div className="stat-bar__fill" style={{ width: '80%' }} />
               </div>
             </div>
-          </motion.div>
+
+            <div className="stat-bar-container">
+              <div className="stat-bar-label">
+                <span>Problem Solving</span>
+                <span>90/100</span>
+              </div>
+              <div className="stat-bar">
+                <div className="stat-bar__fill" style={{ width: '90%' }} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="profile__stats">
+          <div className="stat-group">
+            <div className="stat-group__header">
+              <h3 className="stat-group__title">SKILLS</h3>
+            </div>
+            <div className="skill-grid">
+              {[
+                { name: 'React', level: 'S' },
+                { name: 'TypeScript', level: 'S' },
+                { name: 'Node.js', level: 'A' },
+                { name: 'Next.js', level: 'S' },
+                { name: 'Python', level: 'A' },
+                { name: 'AWS', level: 'B' },
+                { name: 'MongoDB', level: 'A' },
+                { name: 'SQL', level: 'B' },
+              ].map((skill) => (
+                <div key={skill.name} className="skill-item">
+                  <div className="skill-item__name">{skill.name}</div>
+                  <div className="skill-item__level">{skill.level}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="stat-group">
+            <div className="stat-group__header">
+              <h3 className="stat-group__title">TITLES</h3>
+            </div>
+            <div className="skill-grid">
+              {[
+                'Full-Stack Developer',
+                'Problem Solver',
+                'Code Architect',
+                'UI Specialist',
+              ].map((title) => (
+                <div key={title} className="skill-item">
+                  <div className="skill-item__name">{title}</div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
