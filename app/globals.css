@@ -1,4 +1,3 @@
-/* Reset and Base Styles */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -6,7 +5,6 @@
 }
 
 :root {
-  /* Solo Leveling inspired colors */
   --sl-background: #0a0e17;
   --sl-blue-glow: #00a8ff;
   --sl-blue-light: #4ac7ff;
@@ -33,7 +31,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Typography */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-rajdhani);
   font-weight: 700;
@@ -41,7 +38,6 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.05em;
 }
 
-/* Layout */
 .container {
   width: 100%;
   max-width: 1280px;
@@ -49,7 +45,6 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0 1rem;
 }
 
-/* Navigation */
 .navbar {
   position: fixed;
   top: 0;
@@ -133,7 +128,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0.5rem;
 }
 
-/* Hero Section */
+/* Hero Section Enhanced */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -142,12 +137,17 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   overflow: hidden;
   padding: 6rem 1.5rem;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 168, 255, 0.03) 0%,
+    transparent 70%
+  );
 }
 
 .hero__content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 4rem;
   align-items: center;
   max-width: 1280px;
   width: 100%;
@@ -159,37 +159,82 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  position: relative;
+}
+
+.hero__text::before {
+  content: '';
+  position: absolute;
+  top: -2rem;
+  left: -2rem;
+  width: 8rem;
+  height: 8rem;
+  background: radial-gradient(
+    circle at center,
+    var(--sl-blue-glow) 0%,
+    transparent 70%
+  );
+  filter: blur(40px);
+  opacity: 0.3;
+  animation: pulse 4s ease-in-out infinite;
+}
+
+.hero__greeting {
+  color: var(--sl-text-secondary);
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  animation: slideUp 0.5s ease forwards;
+  animation-delay: 0.2s;
 }
 
 .hero__title {
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 700;
-  background: linear-gradient(to right, var(--sl-blue-glow), var(--sl-blue-light));
+  line-height: 1.1;
+  background: linear-gradient(
+    135deg,
+    var(--sl-blue-glow) 0%,
+    var(--sl-blue-light) 50%,
+    var(--sl-blue-glow) 100%
+  );
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 0 10px var(--sl-blue-glow),
-               0 0 20px var(--sl-blue-glow),
-               0 0 30px var(--sl-blue-glow);
+  text-shadow: 0 0 20px rgba(0, 168, 255, 0.3);
+  animation: gradientFlow 8s ease infinite, slideUp 0.5s ease forwards;
+  opacity: 0;
+  animation-delay: 0.4s;
 }
 
 .hero__subtitle {
-  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
   color: var(--sl-blue-light);
   font-weight: 600;
   letter-spacing: 0.05em;
+  opacity: 0;
+  animation: slideUp 0.5s ease forwards;
+  animation-delay: 0.6s;
 }
 
 .hero__description {
   color: var(--sl-text-secondary);
   font-size: 1.125rem;
   max-width: 32rem;
+  line-height: 1.8;
+  opacity: 0;
+  animation: slideUp 0.5s ease forwards;
+  animation-delay: 0.8s;
 }
 
 .hero__buttons {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   margin-top: 1rem;
+  opacity: 0;
+  animation: slideUp 0.5s ease forwards;
+  animation-delay: 1s;
 }
 
 /* Buttons */
@@ -291,10 +336,21 @@ h1, h2, h3, h4, h5, h6 {
   .hero__content {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 3rem;
+  }
+
+  .hero__text::before {
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .hero__buttons {
     justify-content: center;
+  }
+
+  .hero__avatar {
+    height: 20rem;
+    max-width: 20rem;
   }
 }
 
@@ -308,37 +364,120 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Hero Animations */
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+@keyframes borderGlow {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 /* Hero Additional Styles */
-.hero__greeting {
-  color: var(--sl-text-secondary);
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
+.hero__image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hero__avatar {
   position: relative;
   width: 100%;
-  height: 100%;
-  border-radius: 0.5rem;
+  height: 28rem;
+  max-width: 28rem;
+  border-radius: 1rem;
   overflow: hidden;
   background: var(--sl-card-bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+  animation-delay: 1.2s;
 }
 
-.hero__avatar-letter {
-  font-family: var(--font-rajdhani);
-  font-size: 6rem;
-  font-weight: 700;
-  color: var(--sl-blue-light);
+.hero__avatar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(0, 168, 255, 0.1) 0%,
+    transparent 70%
+  );
+  opacity: 0.5;
+  z-index: 2;
 }
 
-.hero__image {
-  aspect-ratio: 1;
-  max-width: 24rem;
-  margin: 0 auto;
-  padding: 1rem;
+.hero__avatar::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    var(--sl-blue-glow),
+    transparent
+  );
+  animation: borderGlow 4s linear infinite;
+  z-index: 1;
+}
+
+.hero__avatar-image {
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  transform-origin: center;
+  filter: brightness(0.9) contrast(1.1);
+}
+
+.hero__avatar:hover .hero__avatar-image {
+  transform: scale(1.05);
 }
 
 .hero__scroll-indicator {

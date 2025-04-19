@@ -10,7 +10,6 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Profile />
-      {/* Other sections will be added here */}
     </main>
   );
 }
