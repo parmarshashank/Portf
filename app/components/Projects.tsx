@@ -84,6 +84,14 @@ const Projects = () => {
       image: "/images/project3.png",
       technologies: ["JavaScript", "React.js", "Tailwind CSS"],
       githubLink: "https://github.com/parmarshashank/sangkriti"
+    },
+    {
+      title: "SangKriti",
+      role: "Frontend Developer",
+      description: "Developed the landing page of a haunted-themed hackathon website using Next.js",
+      image: "/images/project4.png",
+      technologies: ["TypeScript", "Next.js", "Tailwind CSS"],
+      githubLink: "https://hack-o-ween.vercel.app/"
     }
   ];
 
