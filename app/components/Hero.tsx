@@ -59,8 +59,8 @@ const Hero = () => {
             Specializing in building exceptional digital experiences that combine form and function.
           </p>
           <div className="hero__buttons">
-            <a href="#profile" className="button button--primary">
-              View Profile
+            <a href="https://www.linkedin.com/in/shashank-parmar/" target='blank' className="button button--primary">
+              Connect
             </a>
             <a href="#projects" className="button button--secondary">
               See Projects
