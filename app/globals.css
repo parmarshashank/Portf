@@ -1411,3 +1411,64 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
   }
 }
+
+/* Thoughts Section */
+.thoughts {
+  @apply py-16 px-4 relative overflow-hidden max-w-5xl mx-auto;
+}
+
+.thoughts__header {
+  @apply mb-12;
+}
+
+.thoughts__title {
+  @apply text-2xl md:text-3xl font-bold text-[var(--sl-blue-light)] mb-2;
+  text-shadow: 0 0 10px var(--sl-blue-glow);
+}
+
+.thoughts__subtitle {
+  @apply text-[var(--sl-text-secondary)] text-lg;
+}
+
+.thoughts__grid {
+  @apply grid gap-8 max-w-5xl mx-auto;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+.thought-card {
+  @apply bg-[var(--sl-card-bg)] p-8 rounded-lg border border-[var(--sl-border)] relative;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.thought-card:hover {
+  border-color: var(--sl-blue-light);
+  box-shadow: 0 0 30px var(--sl-blue-glow);
+}
+
+.thought-card__quote-icon {
+  @apply text-[var(--sl-blue-light)] text-4xl mb-6 opacity-50;
+}
+
+.thought-card__content {
+  @apply text-[var(--sl-text-primary)] text-lg leading-relaxed mb-6;
+  font-style: italic;
+}
+
+.thought-card__footer {
+  @apply mt-auto border-t border-[var(--sl-border)] pt-4;
+}
+
+.thought-card__date {
+  @apply text-sm text-[var(--sl-blue-light)] font-mono tracking-wider;
+}
+
+@media (max-width: 768px) {
+  .thoughts__grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .thought-card {
+    @apply p-6;
+  }
+}

@@ -15,8 +15,12 @@ const rajdhani = Rajdhani({
 });
 
 export const metadata: Metadata = {
-  title: "parmarshashank",
-  description: "Hehe",
+  title: "Shashank Parmar ",
+  description: "A little dumb, a little bright :)",
+  icons: {
+    icon: '/images/night3.jpg',
+    apple: '/images/night3.jpg',
+  },
 };
 
 export default function RootLayout({
