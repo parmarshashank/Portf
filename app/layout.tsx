@@ -18,8 +18,8 @@ export const metadata: Metadata = {
   title: "Shashank Parmar ",
   description: "A little dumb, a little bright :)",
   icons: {
-    icon: '/images/night3.jpg',
-    apple: '/images/night3.jpg',
+    icon: '/night3.jpg',
+    apple: '/night3.jpg',
   },
 };
 

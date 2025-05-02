@@ -50,10 +50,10 @@ const Hero = () => {
         <div className="hero__text">
           <span className="hero__greeting">Welcome to my world</span>
           <h1 className="hero__title">
-            Solo Developer,<br />
-            Endless Possibilities
+            Following Curiosity,<br />
+            to wherever it leads.
           </h1>
-          <p className="hero__subtitle">Full-Stack Developer & UI/UX Enthusiast</p>
+          <p className="hero__subtitle">Full-Stack Developer & Tech Enthusiast</p>
           <p className="hero__description">
             Transforming ideas into reality through elegant code and creative solutions. 
             Specializing in building exceptional digital experiences that combine form and function.
@@ -71,7 +71,7 @@ const Hero = () => {
         <div className="hero__image status-window">
           <div className="hero__avatar">
             <Image 
-              src="/images/night3.jpg"
+              src="/images/image.jpg"
               alt="Night cityscape"
               fill
               className="hero__avatar-image"

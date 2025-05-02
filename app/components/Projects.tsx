@@ -86,7 +86,7 @@ const Projects = () => {
       githubLink: "https://github.com/parmarshashank/sangkriti"
     },
     {
-      title: "SangKriti",
+      title: "Hack-O-Ween",
       role: "Frontend Developer",
       description: "Developed the landing page of a haunted-themed hackathon website using Next.js",
       image: "/images/project4.png",
