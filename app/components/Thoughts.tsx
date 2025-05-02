@@ -29,6 +29,10 @@ const Thoughts = () => {
       date: "April 23, 2025",
       content: "Yeah this one's the first.... `Why isn't anyone ever just whelmed`"
     },
+    {
+      date: "May 2, 2025",
+      content: "Been reading tech articles a lot lately, think it's time to write one now"
+    },
    
   ];
 
