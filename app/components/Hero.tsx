@@ -71,7 +71,7 @@ const Hero = () => {
         <div className="hero__image status-window">
           <div className="hero__avatar">
             <Image 
-              src="/images/image.jpg"
+              src="/images/image.png"
               alt="Night cityscape"
               fill
               className="hero__avatar-image"
